@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<link rel="icon" type="image/png" href="/static/assets/img/favicon.ico">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<title>Light Bootstrap Dashboard by Creative Tim</title>
+
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+
+
+    <!-- Bootstrap core CSS     -->
+    <link href="/static/assets/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Animation library for notifications   -->
+    <link href="/static/assets/css/animate.min.css" rel="stylesheet"/>
+
+    <!--  Light Bootstrap Table core CSS    -->
+    <link href="/static/assets/css/light-bootstrap-dashboard.css" rel="stylesheet"/>
+
+
+    <!--  CSS for Demo Purpose, don't include it in your project     -->
+    <link href="/static/assets/css/demo.css" rel="stylesheet" />
+
+
+    <!--     Fonts and icons     -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="/static/assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
+</head>
+<body>
+
+<div class="wrapper">
+
+    {% include 'sidebar.html' %}
+
+    <div class="main-panel">
+        <nav class="navbar navbar-default navbar-fixed">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Table List</a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-left">
+                        <li>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-dashboard"></i>
+                            </a>
+                        </li>
+                        <li class="dropdown">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="fa fa-globe"></i>
+                                    <b class="caret"></b>
+                                    <span class="notification">5</span>
+                              </a>
+                              <ul class="dropdown-menu">
+                                <li><a href="#">Notification 1</a></li>
+                                <li><a href="#">Notification 2</a></li>
+                                <li><a href="#">Notification 3</a></li>
+                                <li><a href="#">Notification 4</a></li>
+                                <li><a href="#">Another notification</a></li>
+                              </ul>
+                        </li>
+                        <li>
+                           <a href="">
+                                <i class="fa fa-search"></i>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                           <a href="">
+                               Account
+                            </a>
+                        </li>
+                        <li class="dropdown">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    Dropdown
+                                    <b class="caret"></b>
+                              </a>
+                              <ul class="dropdown-menu">
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Separated link</a></li>
+                              </ul>
+                        </li>
+                        <li>
+                            <a href="#">
+                                Log out
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <button type="submit" class="btn btn-warning btn-fill pull-left" id="mapBtn">Start Predict !</button>
+        <div class="clearfix"></div>
+        <div class="col-md-4">
+
+        </div>
+        <div class="col-md-5" id="preresult">
+            <div class="card">
+                <div class="header">
+                    <h4 class="title">预测结果展示</h4>
+                    <p class="category">蓝色为Map阶段，红色为Reduce阶段</p>
+                </div>
+                <div class="content">
+                    <img src="/static/img/cpu.png" class="img-responsive" alt="CPU" id="prepic">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+
+        </div>
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">Hadoop重要参数设置 </h4>
+                                <p class="category">包括输入文件大小与任务类型设置</p>
+                            </div>
+                            <div class="content table-responsive table-full-width">
+                                <table class="table table-hover table-striped">
+                                    <thead>
+                                        <th>编号</th>
+                                    	<th>名称</th>
+                                    	<th>配置值</th>
+                                    	<th>作用</th>
+                                    </thead>
+                                    <tbody>
+                                         <tr>
+                                        	<td>1</td>
+                                        	<td>任务类型</td>
+                                        	<td><input type="text" class="form-control" placeholder="class of task" value="0" id="input0"></td>
+                                        	<td>0代表Terasort类任务，1代表Wordcount类任务,最小取0,最大取11</td>
+                                        </tr>
+                                        <tr>
+                                        	<td>2</td>
+                                        	<td>map.input</td>
+                                        	<td><input type="text" class="form-control" placeholder="map.tasks" value="50" id="input1"></td>
+                                        	<td>输入数据量的大小，单位为MB,最小取1,最大取1000TB</td>
+                                        </tr>
+                                        <tr>
+                                        	<td>3</td>
+                                        	<td>reduce.tasks</td>
+                                        	<td><input type="text" class="form-control" placeholder="reduce.tasks" value="40" id="input2"></td>
+                                        	<td>Reduce任务的数量，数量越多每个Reduce任务处理的数据量就越小,最小取1,最大取999</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="header">
+                                <h4 class="title">Map重要参数设置</h4>
+                                <p class="category">包括几个可调参数与确定配置</p>
+                            </div>
+                            <div class="content table-responsive table-full-width">
+                                <table class="table table-hover table-striped">
+                                    <thead>
+                                        <th>编号</th>
+                                    	<th>名称</th>
+                                    	<th>配置值</th>
+                                    	<th>作用</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                        	<td>4</td>
+                                        	<td>io.sort.mb</td>
+                                        	<td><input type="text" class="form-control" placeholder="io.sort.mb" value="100" id="input3"></td>
+                                        	<td>表示map函数输出结果时所使用的内存缓存区的大小（MB),最小取0,最大取600</td>
+                                        </tr>
+                                        <tr>
+                                        	<td>5</td>
+                                        	<td>io.sort.spill.percent</td>
+                                        	<td><input type="text" class="form-control" placeholder="io.sort.spil.percent" value="0.7" id="input4"></td>
+                                        	<td>表示map输出内存缓存和用来开始磁盘溢出写过程的记录边界索引使用比例的阈值,最小取0,最大取1</td>
+                                        </tr>
+                                        <tr>
+                                        	<td>6</td>
+                                        	<td>io.sort.factor</td>
+                                        	<td><input type="text" class="form-control" placeholder="io.sort.factor" value="10" id="input5"></td>
+                                        	<td>表示在用归并排序对中间文件排序时，一次最多合并的文件数。当数据量比较大时，可以将此值增加,最小取0,最大取90</td>
+                                        </tr>
+                                        <tr>
+                                        	<td>7</td>
+                                        	<td>mapred.reduce.slowstart.complete.maps</td>
+                                        	<td>1</td>
+                                        	<td>达到Map完成百分比阈值后提前开始Reduce阶段</td>
+                                        </tr>
+                                        <tr>
+                                        	<td>8</td>
+                                        	<td>mapreduce.map.speculative</td>
+                                        	<td>0</td>
+                                        	<td>是否打开推测执行功能(1:true;0:false)</td>
+                                        </tr>
+                                        <tr>
+                                        	<td>9</td>
+                                        	<td>mapreduce.job.maps</td>
+                                        	<td>数据总量 / HDFS块大小</td>
+                                        	<td>map任务数量，不可直接调节</td>
+                                        </tr>
+                                        <tr>
+                                        	<td>10</td>
+                                        	<td>dfs.blocksize</td>
+                                        	<td>128MB</td>
+                                        	<td>HDFS文件系统块大小</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                            <div class="header">
+                                <h4 class="title">Reduce重要参数设置</h4>
+                                <p class="category">包括几个可调参数与确定配置</p>
+                            </div>
+                            <div class="content table-responsive table-full-width">
+                                <table class="table table-hover table-striped">
+                                    <thead>
+                                        <th>ID</th>
+                                    	<th>Name</th>
+                                    	<th>configuration</th>
+                                    	<th>作用</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                        	<td>11</td>
+                                        	<td>mapreduce.reduce.shuffle.parallelcopies</td>
+                                        	<td><input type="text" class="form-control" placeholder="mapreduce.reduce.shuffle.parallelcopies" value="5" id="input6"></td>
+                                        	<td>表示用来复制 map 输出数据到reducer 的线程数,最小取1,最大取20</td>
+                                        </tr>
+                                        <tr>
+                                        	<td>12</td>
+                                        	<td>io.sort.factor</td>
+                                        	<td><input type="text" class="form-control" placeholder="io.sort.factor" value="10" id="input7"></td>
+                                        	<td>表示在用归并排序对中间文件排序时，一次最多合并的文件数。当数据量比较大时，可以将此值增加,最小取1,最大取90</td>
+                                        </tr>
+                                        <tr>
+                                        	<td>13</td>
+                                        	<td>mapreduce.reduce.shuffle.input.buffer.percent</td>
+                                        	<td><input type="text" class="form-control" placeholder="mapreduce.reduce.shuffle.input.buffer.percent" value="0.7" id="input8"></td>
+                                        	<td>在 reduce 任务的 shuffle 复制阶段，分配给用来存储map 输出数据的缓冲区占堆空间的百分比,最小取0.6,最大取0.9</td>
+                                        </tr>
+                                        <tr>
+                                        	<td>14</td>
+                                        	<td>mapreduce.reduce.shuffle.merge.percent</td>
+                                        	<td><input type="text" class="form-control" placeholder="mapreduce.reduce.shuffle.merge.percent" value="0.66" id="input9"></td>
+                                        	<td>存储 map 输出结果缓冲区的使用比例阈值，当超过该阈值时启动合并输出和磁盘溢出写的过程,最小取0.6,最大取0.9</td>
+                                        </tr>
+                                        <tr>
+                                        	<td>15</td>
+                                        	<td>mapreduce.reduce.input.buffer.percent</td>
+                                        	<td><input type="text" class="form-control" placeholder="mapreduce.reduce.input.buffer.percent" value="0" id="input10"></td>
+                                        	<td>在最后的reduce阶段，在内存中保存Map输出的空间占整个堆的比例。默认情况下,在reduce任务开始之前，所<br />有map输出都合并到磁盘上，以便为reducer提供尽可能多的内存,最小取0,最大取0.9</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+
+        <button type="submit" class="btn btn-warning btn-fill pull-left" id="reduceBtn">Start Predict !</button>
+        <div class="clearfix"></div>
+
+
+
+
+        {% include 'footer.html' %}
+
+
+    </div>
+</div>
+
+
+</body>
+
+    <!--   Core JS Files   -->
+    <script src="/static/assets/js/jquery-1.10.2.js" type="text/javascript"></script>
+	<script src="/static/assets/js/bootstrap.min.js" type="text/javascript"></script>
+
+	<!--  Checkbox, Radio & Switch Plugins -->
+	<script src="/static/assets/js/bootstrap-checkbox-radio-switch.js"></script>
+
+	<!--  Charts Plugin -->
+	<script src="/static/assets/js/chartist.min.js"></script>
+
+    <!--  Notifications Plugin    -->
+    <script src="/static/assets/js/bootstrap-notify.js"></script>
+
+    <!--  Google Maps Plugin    -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
+    <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
+	<script src="/static/assets/js/light-bootstrap-dashboard.js"></script>
+
+	<!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
+	<script src="/static/assets/js/demo.js"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function(){
+
+            $("#preresult").hide()
+
+            var minValue = [0,1,1,0,0,0,1,1,0.6,0.6,0]
+            var maxValue = [1,1000000000,999,600,1,90,20,90,0.9,0.9,0.9]
+
+            function judge(a) {
+                if(isNaN(a))
+                    return false
+                return true;
+            }
+
+            var t = document.getElementById("mapBtn");
+            t.onclick = function a(){
+                document.getElementById('prepic').src = '/static/img/loading.gif'
+                $("#preresult").show()
+                var cnt = 0
+                var error = []
+                for (var i = 0;i < 11;i++){
+                    name = 'input' + i.toString();
+                    tmp = document.getElementById(name).value;
+                    tmp = parseFloat(tmp,10);
+                    //alert(tmp);
+                    if(judge(tmp) && tmp >= minValue[i] && tmp <= maxValue[i])
+                        continue;
+                    error[cnt++] = i;
+                }
+                if(!error.length){
+
+                    postStr = {}
+                    for(var i = 0;i < 11;i++){
+                        name = 'input' + i.toString();
+                        if(maxValue[i] > 1 && i > 2)
+                            postStr[name] = parseFloat(document.getElementById(name).value,10) / maxValue[i];
+                        else
+                            postStr[name] = document.getElementById(name).value
+                    }
+                    //postStr = postStr + '}'
+                    //alert(postStr);
+
+                    if(document.getElementById('input0').value == '0') {
+                        $.get('http://127.0.0.1:8000/preTerasort',postStr,function (data) {
+                            document.getElementById('prepic').src = '/static/img/' + data + '.png'
+
+                            $("#preresult").show()
+                        });
+                        return;
+                    }
+                    else{
+
+                    }
+                }
+                else {
+                    $("#preresult").hide()
+                    //alert(minValue[parseInt(error[0])]);
+                    errorMsg = 'Sorry,Your parameter config is out of range,please modify you Input:<br />'
+                    for (var i = 0; i < error.length; i++) {
+                        errorname = $("#input" + error[i].toString()).parent().prev().prev().text()
+                        //alert(errorname)
+                        errorMsg += 'Parameter index ' + errorname + ' is range from ' + minValue[parseInt(error[i])].toString() + ' to ' +
+                            maxValue[parseInt(error[i])].toString() + '<br />';
+                    }
+                    //alert(errorMsg);
+                    $.notify({
+                        message: errorMsg,
+                        icon: "pe-7s-gift",
+                    }, {
+                        type: 'danger',
+                        placement: {
+                            from: 'top',
+                            align: 'center'
+                        },
+                        delay: '0',
+                    })
+                }
+            }
+
+            document.getElementById("predictionsidebar").className = 'active'
+        });
+
+    </script>
+
+</html>

@@ -1,0 +1,51 @@
+    <div class="sidebar" data-color="blue" data-image="/static/assets/img/sidebar-5.jpg">
+
+    <!--
+
+        Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
+        Tip 2: you can also add an image using data-image tag
+
+    -->
+
+    	<div class="sidebar-wrapper">
+            <div class="logo">
+                <a href="{% url 'home' %}" class="simple-text">
+                    Burning Diction
+                </a>
+            </div>
+
+            <ul class="nav">
+                <li id="homesidebar">
+                    <a href="{% url 'home' %}">
+                        <i class="pe-7s-graph"></i>
+                        <p>cluster overview</p>
+                    </a>
+                </li>
+                <li id="predictionsidebar">
+                    <a href="{% url 'predictionWeb' %}">
+                        <i class="pe-7s-note2"></i>
+                        <p>prediciton</p>
+                    </a>
+                </li>
+                <li id="jobssidebar">
+                    <a href="{% url 'jobHistory' %}">
+                        <i class="pe-7s-note2"></i>
+                        <p>jobs</p>
+                    </a>
+                </li>
+                <li id="modelsidebar">
+                    <a href="{% url 'modConfig' %}">
+                        <i class="pe-7s-user"></i>
+                        <p>model config</p>
+                    </a>
+                </li>
+                <li id="">
+                    <a href="notifications.html">
+                        <i class="pe-7s-bell"></i>
+                        <p>Notifications</p>
+                    </a>
+                </li>
+
+            </ul>
+    	</div>
+    </div>
